@@ -32,7 +32,7 @@ def cancel_intent():
     return say("CancelIntent", "You want to cancel")	#don't use CancelIntent as title it causes code reference error during certification 
 def helpIntent():
     text='You can ask me calculate sine, cos, tan of any value. I would learn more functions as soon as possible.'
-    return say("Help", text)		#same here don't use CancelIntent
+    return sayAndListen("Help", text)		#same here don't use CancelIntent
 def stop_intent():
     return say("StopIntent", "You want to stop")		#here also don't use StopIntent
 # Intent Handlers end here
