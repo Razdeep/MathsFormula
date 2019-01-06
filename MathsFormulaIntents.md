@@ -25,9 +25,16 @@
                 },
                 {
                     "name": "SineIntent",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
                     "samples": [
-                        "What is the sine of thirty degree"
+                        "Tell me the sine of {value}",
+                        "Sine of {value}",
+                        "What is the sine of {value} degree"
                     ]
                 }
             ],
