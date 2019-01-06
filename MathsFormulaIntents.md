@@ -70,6 +70,16 @@
                         "what is tan of {value}",
                         "What is the tangent of {value} degree"
                     ]
+                },
+                {
+                    "name": "AboutIntent",
+                    "slots": [],
+                    "samples": [
+                        "What is the name of the developer who created you",
+                        "Who is the developer",
+                        "Who made you",
+                        "Who created you"
+                    ]
                 }
             ],
             "types": []
