@@ -30,8 +30,9 @@ def buildSimpleCard(title, body):
 # Intent Handlers
 def cancel_intent():
     return say("CancelIntent", "You want to cancel")	#don't use CancelIntent as title it causes code reference error during certification 
-def help_intent():
-    return say("CancelIntent", "You want help")		#same here don't use CancelIntent
+def helpIntent():
+    text='You can ask me calculate sine, cos, tan of any value. I would learn more functions as soon as possible.'
+    return say("Help", text)		#same here don't use CancelIntent
 def stop_intent():
     return say("StopIntent", "You want to stop")		#here also don't use StopIntent
 # Intent Handlers end here
@@ -71,11 +72,13 @@ def intentRouter(event, context):
         value=float(value)
         text='Haha! The tangent of '+str(value)+' is '+str(tangent(value))
         return sayAndListen('Answer',text)
+    elif intent == 'AboutIntent':
+        return sayAndListen('Developer','I was created by Rajdeep Roy Chowdhury')
     # Required Intents
     elif intent == "AMAZON.CancelIntent":
         return cancel_intent()
     elif intent == "AMAZON.HelpIntent":
-        return help_intent()
+        return helpIntent()
     elif intent == "AMAZON.StopIntent":
         return stop_intent()
     else:
@@ -89,4 +92,7 @@ def lambda_handler(event, context):
 
 if __name__=='__main__':
     print('The json object that is returned is...')
-    print(lambda_handler('checking','json response in local'))
+    json_request=dict()
+    context=dict()
+    print(lambda_handler(json_request,context))
+    # This is only for debugging locally
