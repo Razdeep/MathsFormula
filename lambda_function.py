@@ -1,11 +1,11 @@
 import math
 
 def sine(value):
-    return round(math.sin(value*(22/7)/180))
+    return math.sin(value*(22/7)/180)
 def cosine(value):
-    return round(math.cos(value*(22/7)/180))
+    return math.cos(value*(22/7)/180)
 def tangent(value):
-    return round(math.tan(value*(22/7)/180))
+    return math.tan(value*(22/7)/180)
 
 def buildPlainSpeech(body):
     speech = {}
@@ -29,21 +29,21 @@ def buildSimpleCard(title, body):
 
 # Intent Handlers
 def cancel_intent():
-    return statement("CancelIntent", "You want to cancel")	#don't use CancelIntent as title it causes code reference error during certification 
+    return say("CancelIntent", "You want to cancel")	#don't use CancelIntent as title it causes code reference error during certification 
 def help_intent():
-    return statement("CancelIntent", "You want help")		#same here don't use CancelIntent
+    return say("CancelIntent", "You want help")		#same here don't use CancelIntent
 def stop_intent():
-    return statement("StopIntent", "You want to stop")		#here also don't use StopIntent
+    return say("StopIntent", "You want to stop")		#here also don't use StopIntent
 # Intent Handlers end here
 
-def statement(title, body):
+def say(title, body):
     speechlet = {}
     speechlet['outputSpeech'] = buildPlainSpeech(body)
     speechlet['card'] = buildSimpleCard(title, body)
     speechlet['shouldEndSession'] = True
     return buildResponse(speechlet)
 
-def statementAndListen(title, body):
+def sayAndListen(title, body):
     speechlet = {}
     speechlet['outputSpeech'] = buildPlainSpeech(body)
     speechlet['card'] = buildSimpleCard(title, body)
@@ -51,20 +51,35 @@ def statementAndListen(title, body):
     return buildResponse(speechlet)
 
 def onLaunch(event, context):
-    return statementAndListen("Maths Formula", "Welcome to Maths formula created by Rajdeep Roy Chowdhury")
+    return sayAndListen("Maths Formula", "Welcome to Maths formula")
 
 def intentRouter(event, context):
     intent = event['request']['intent']['name']
     # Custom Intents
     if intent == 'SineIntent':
-        return 'This would return Sine Json object'
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The sine of '+str(value)+' is '+str(sine(value))
+        return sayAndListen('Answer',text)
+    elif intent == 'CosineIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The cosine of '+str(value)+' is '+str(cosine(value))
+        return sayAndListen('Answer',text)
+    elif intent == 'TangentIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The tangent of '+str(value)+' is '+str(tangent(value))
+        return sayAndListen('Answer',text)
     # Required Intents
-    if intent == "AMAZON.CancelIntent":
+    elif intent == "AMAZON.CancelIntent":
         return cancel_intent()
-    if intent == "AMAZON.HelpIntent":
+    elif intent == "AMAZON.HelpIntent":
         return help_intent()
-    if intent == "AMAZON.StopIntent":
+    elif intent == "AMAZON.StopIntent":
         return stop_intent()
+    else:
+        return say('Oops','This option is invalid right now, it might be available in the update. Please say Open Maths formula')
 
 def lambda_handler(event, context):
     if event['request']['type'] == "LaunchRequest":
