@@ -1,11 +1,17 @@
 import math
 
 def sine(value):
+    '''Returns sine of an angle (in degrees)'''
     return math.sin(value*(22/7)/180)
 def cosine(value):
+    '''Returns cosine of an angle (in degrees)'''
     return math.cos(value*(22/7)/180)
 def tangent(value):
+    '''Returns tangent of an angle (in degrees)'''
     return math.tan(value*(22/7)/180)
+def sumOfNaturalNumbers(n):
+    '''Return sum of n natural numbers'''
+    return n*(n+1)//2
 
 def buildPlainSpeech(body):
     speech = {}
@@ -72,6 +78,20 @@ def intentRouter(event, context):
         value=float(value)
         text='Haha! The tangent of '+str(value)+' is '+str(tangent(value))
         return sayAndListen('Answer',text)
+    elif intent == 'CosecIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The cosec of '+str(value)+' is '+str(1/sine(value))
+        return sayAndListen('Answer',text)
+    elif intent ==  'SecantIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The secant of '+str(value)+' is '+str(1/cosine(value))
+        return sayAndListen('Answer',text)
+    elif intent == 'CotIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=float(value)
+        text='Haha! The cot of '+str(value)+' is '+str(1/tangent(value))
     elif intent == 'AboutIntent':
         return sayAndListen('Developer','I was created by Rajdeep Roy Chowdhury')
     # Required Intents
