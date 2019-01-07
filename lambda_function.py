@@ -1,6 +1,6 @@
 import math
 
-ending_text='Thank you using Maths Formula. You can always invoke this skill by saying "Alexa, open Maths Formula".'
+ending_text='Thank you for using Maths Formula. You can always invoke this skill by saying "Alexa, open Maths Formula".'
 
 def sine(value):
     '''Returns sine of an angle (in degrees)'''
@@ -124,7 +124,7 @@ def intentRouter(event, context):
     elif intent == "AMAZON.StopIntent":
         return stop_intent()
     else:
-        return say('Oops','This option is invalid right now, it might be available in the update. Please say Open Maths formula')
+        return say('Oops','Oops! This option is invalid right now, it might be available in the next version.')
 
 def lambda_handler(event, context):
     if event['request']['type'] == "LaunchRequest":
