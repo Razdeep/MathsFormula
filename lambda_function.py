@@ -1,5 +1,7 @@
 import math
 
+ending_text='Thank you using Maths Formula. You can always invoke this skill by saying "Alexa, open Maths Formula".'
+
 def sine(value):
     '''Returns sine of an angle (in degrees)'''
     return math.sin(value*(22/7)/180)
@@ -50,6 +52,7 @@ def stop_intent():
 # Intent Handlers end here
 
 def say(title, body):
+    body=body+'. '+ending_text
     speechlet = {}
     speechlet['outputSpeech'] = buildPlainSpeech(body)
     speechlet['card'] = buildSimpleCard(title, body)
@@ -111,7 +114,8 @@ def intentRouter(event, context):
     #elif intent == 'PowerIntent':
     # @TODO: Implement
     elif intent == 'AboutIntent':
-        return say('Developer','I was created by Rajdeep Roy Chowdhury')
+        text='I was created by Rajdeep Roy Chowdhury. '
+        return say('Developer',text)
     # Required Intents
     elif intent == "AMAZON.CancelIntent":
         return cancel_intent()
