@@ -41,12 +41,12 @@ def buildSimpleCard(title, body):
 
 # Intent Handlers
 def cancel_intent():
-    return say("CancelIntent", "You want to cancel")	#don't use CancelIntent as title it causes code reference error during certification 
+    return sayWithoutCards("Ok! Cancelling...")	#don't use CancelIntent as title it causes code reference error during certification 
 def helpIntent():
     text='You can ask me calculate sine, cos, tan of any value. I would learn more functions as soon as possible.'
-    return sayAndListen("Help", text)		#same here don't use CancelIntent
+    return say('Help',text)		#same here don't use CancelIntent
 def stop_intent():
-    return say("StopIntent", "You want to stop")		#here also don't use StopIntent
+    return sayWithoutCards("Ok! Stopping...")		#here also don't use StopIntent
 # Intent Handlers end here
 
 def say(title, body):
@@ -62,6 +62,14 @@ def sayAndListen(title, body):
     speechlet['card'] = buildSimpleCard(title, body)
     speechlet['shouldEndSession'] = False
     return buildResponse(speechlet)
+
+# DEBUG
+def sayWithoutCards(text):
+    speechlet = {}
+    speechlet['outputSpeech'] = buildPlainSpeech(text)
+    speechlet['shouldEndSession'] = True
+    return buildResponse(speechlet)
+# DEBUG ENDS
 
 def onLaunch(event, context):
     text= "Welcome to Maths formula, you can ask me to compute any mathematical function by saying something like, 'What is the sine of 45 degree?'"
