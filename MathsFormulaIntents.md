@@ -90,7 +90,7 @@
                         }
                     ],
                     "samples": [
-                        "What is the sine of {value} degree",
+                        "Tell me the cosec of {value}",
                         "Cosec of {value}",
                         "What is the cosec of {value} degree"
                     ]
@@ -122,8 +122,8 @@
                     ],
                     "samples": [
                         "cot of {value}",
-                        "Tell me the sec of {value}",
-                        "What is the sec of {value} degree"
+                        "Tell me the cot of {value}",
+                        "What is the cot of {value} degree"
                     ]
                 }
             ],
