@@ -80,6 +80,51 @@
                         "Who made you",
                         "Who created you"
                     ]
+                },
+                {
+                    "name": "CosecIntent",
+                    "slots": [
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "What is the sine of {value} degree",
+                        "Cosec of {value}",
+                        "What is the cosec of {value} degree"
+                    ]
+                },
+                {
+                    "name": "SecantIntent",
+                    "slots": [
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "secant of {value}",
+                        "sec of {value}",
+                        "What is the sec of {value} degree",
+                        "What is the secant of {value} degree",
+                        "Tell me the sec of {value}",
+                        "Tell me the secant of {value}"
+                    ]
+                },
+                {
+                    "name": "CotIntent",
+                    "slots": [
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "cot of {value}",
+                        "Tell me the sec of {value}",
+                        "What is the sec of {value} degree"
+                    ]
                 }
             ],
             "types": []
