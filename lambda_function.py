@@ -122,8 +122,8 @@ def intentRouter(event, context):
         return say('Answer',text)
     elif intent == 'PowerIntent':
         ''' Here a is the base and b is the exponent'''
-        a=event['request']['intent']['slots']['a']['value'] # @TODO: Modify
-        b=event['request']['intent']['slots']['b']['value'] # @TODO: Modify
+        a=event['request']['intent']['slots']['a']['value']
+        b=event['request']['intent']['slots']['b']['value']
         a=int(a)
         b=int(b)
         text='Haha! The value of '+str(a)+' to the power '+str(b)+' is '+str(a**b)
@@ -131,7 +131,7 @@ def intentRouter(event, context):
     elif intent == 'NaturalNumbersIntent':
         n=event['request']['intent']['slots']['n']['value']
         n=int(n)
-        text='Haha! The Sum of '+str(n)+' Natural Numbers is '+str(sumOfNaturalNumbers(n))
+        text='Haha! The Sum of the first '+str(n)+' Natural Numbers is '+str(sumOfNaturalNumbers(n))
         return say('Answer',text)
     elif intent == 'AboutIntent':
         text='I was created by Rajdeep Roy Chowdhury. '

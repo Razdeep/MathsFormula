@@ -154,6 +154,8 @@
                         }
                     ],
                     "samples": [
+                        "What is {a} power {b}",
+                        "What is {a} to the power {b}",
                         "{a} to power {b}",
                         "{a} power {b}",
                         "{a} raised to the power {b}",
