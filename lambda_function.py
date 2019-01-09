@@ -17,10 +17,6 @@ def factorial(n):
     for i in range(1,n+1):
         result=result*i
     return result
-def nPr(n,r):
-    pass
-def nCr(n,r):
-    pass
 def sumOfNaturalNumbers(n):
     '''Return sum of n natural numbers'''
     return n*(n+1)//2
@@ -70,13 +66,11 @@ def sayAndListen(title, body):
     speechlet['shouldEndSession'] = False
     return buildResponse(speechlet)
 
-# DEBUG
 def sayWithoutCards(text):
     speechlet = {}
     speechlet['outputSpeech'] = buildPlainSpeech(text)
     speechlet['shouldEndSession'] = True
     return buildResponse(speechlet)
-# DEBUG ENDS
 
 def onLaunch(event, context):
     text= "Welcome to Maths formula, you can ask me to compute any mathematical function by saying something like, 'What is the sine of 45 degree?'"
@@ -132,6 +126,20 @@ def intentRouter(event, context):
         n=event['request']['intent']['slots']['n']['value']
         n=int(n)
         text='Haha! The Sum of the first '+str(n)+' Natural Numbers is '+str(sumOfNaturalNumbers(n))
+        return say('Answer',text)
+    elif intent == 'nPrIntent':
+        n=event['request']['intent']['slots']['n']['value']
+        r=event['request']['intent']['slots']['r']['value']
+        n=int(n)
+        r=int(r)
+        text='Haha! The value of '+str(n)+' P '+str(r)+' is '+str(factorial(n)//(factorial(n-r)))
+        return say('Answer',text)
+    elif intent == 'nCrIntent':
+        n=event['request']['intent']['slots']['n']['value']
+        r=event['request']['intent']['slots']['r']['value']
+        n=int(n)
+        r=int(r)
+        text='Haha! The value of '+str(n)+' C '+str(r)+' is '+str(factorial(n)//(factorial(n-r)*factorial(r)))
         return say('Answer',text)
     elif intent == 'AboutIntent':
         text='I was created by Rajdeep Roy Chowdhury. '

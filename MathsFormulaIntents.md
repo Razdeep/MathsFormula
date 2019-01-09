@@ -175,6 +175,46 @@
                         "Tell me the sum of first {n} numbers",
                         "What is the sum of first {n} natural numbers"
                     ]
+                },
+                {
+                    "name": "nPrIntent",
+                    "slots": [
+                        {
+                            "name": "n",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "r",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Tell me the value of {n} P {r}",
+                        "What is the value of {n} P {r}",
+                        "Tell me what is {n} P {r}",
+                        "{n} P {r}",
+                        "What is {n} P {r}"
+                    ]
+                },
+                {
+                    "name": "nCrIntent",
+                    "slots": [
+                        {
+                            "name": "n",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "r",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Tell me the value of {n} C {r}",
+                        "What is the value of {n} C {r}",
+                        "Tell me what is {n} C {r}",
+                        "{n} C {r}",
+                        "What is {n} C {r}"
+                    ]
                 }
             ],
             "types": []
