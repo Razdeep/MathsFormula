@@ -125,6 +125,54 @@
                         "Tell me the cot of {value}",
                         "What is the cot of {value} degree"
                     ]
+                },
+                {
+                    "name": "FactorialIntent",
+                    "slots": [
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "What is the value of {value} factorial",
+                        "{value} factorial",
+                        "Factorial {value}",
+                        "What is the factorial of {value}"
+                    ]
+                },
+                {
+                    "name": "PowerIntent",
+                    "slots": [
+                        {
+                            "name": "a",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "b",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{a} to power {b}",
+                        "{a} power {b}",
+                        "{a} raised to the power {b}",
+                        "What is the value of {a} to the power {b}"
+                    ]
+                },
+                {
+                    "name": "NaturalNumbersIntent",
+                    "slots": [
+                        {
+                            "name": "n",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Tell me the sum of first {n} natural numbers",
+                        "Tell me the sum of first {n} numbers",
+                        "What is the sum of first {n} natural numbers"
+                    ]
                 }
             ],
             "types": []

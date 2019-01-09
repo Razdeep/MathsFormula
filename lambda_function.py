@@ -17,6 +17,10 @@ def factorial(n):
     for i in range(1,n+1):
         result=result*i
     return result
+def nPr(n,r):
+    pass
+def nCr(n,r):
+    pass
 def sumOfNaturalNumbers(n):
     '''Return sum of n natural numbers'''
     return n*(n+1)//2
@@ -111,8 +115,24 @@ def intentRouter(event, context):
         value=float(value)
         text='Haha! The cot of '+str(value)+' is '+str(1/tangent(value))
         return say('Answer',text)
-    #elif intent == 'PowerIntent':
-    # @TODO: Implement
+    elif intent == 'FactorialIntent':
+        value=event['request']['intent']['slots']['value']['value']
+        value=int(value)
+        text='Haha! The factorial of '+str(value)+' is '+str(factorial(value))
+        return say('Answer',text)
+    elif intent == 'PowerIntent':
+        ''' Here a is the base and b is the exponent'''
+        a=event['request']['intent']['slots']['a']['value'] # @TODO: Modify
+        b=event['request']['intent']['slots']['b']['value'] # @TODO: Modify
+        a=int(a)
+        b=int(b)
+        text='Haha! The value of '+str(a)+' to the power '+str(b)+' is '+str(a**b)
+        return say('Answer',text)
+    elif intent == 'NaturalNumbersIntent':
+        n=event['request']['intent']['slots']['n']['value']
+        n=int(n)
+        text='Haha! The Sum of '+str(n)+' Natural Numbers is '+str(sumOfNaturalNumbers(n))
+        return say('Answer',text)
     elif intent == 'AboutIntent':
         text='I was created by Rajdeep Roy Chowdhury. '
         return say('Developer',text)
