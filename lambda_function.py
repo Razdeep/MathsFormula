@@ -41,16 +41,6 @@ def buildSimpleCard(title, body):
     card['content'] = body
     return card
 
-# Intent Handlers
-def cancel_intent():
-    return sayWithoutCards("Ok! Cancelling...")	#don't use CancelIntent as title it causes code reference error during certification 
-def helpIntent():
-    text='You can ask me to calculate sine, cos, etc for any value. I would learn more functions as soon as possible.'
-    return sayAndListen('Help',text)		#same here don't use CancelIntent
-def stop_intent():
-    return sayWithoutCards("Ok! Stopping...")		#here also don't use StopIntent
-# Intent Handlers end here
-
 def say(title, body):
     body=body+'. '+ending_text
     speechlet = {}
@@ -146,11 +136,13 @@ def intentRouter(event, context):
         return say('Developer',text)
     # Required Intents
     elif intent == "AMAZON.CancelIntent":
-        return cancel_intent()
+        return sayWithoutCards("Ok! Cancelling...")
     elif intent == "AMAZON.HelpIntent":
-        return helpIntent()
+        text=('You can ask me to calculate trigonometric functions, Factorials,'
+        'Exponents, Permutations and combinations. I would learn more functions as soon as possible.')
+        return sayAndListen('Help',text)
     elif intent == "AMAZON.StopIntent":
-        return stop_intent()
+        return sayWithoutCards("Ok! Stopping...")
     else:
         return say('Oops','Oops! This option is invalid right now, it might be available in the next version.')
 
