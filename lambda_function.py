@@ -1,6 +1,6 @@
 '''
  *
- * Copyright (C) Rajdeep Roy Chowdhury 2019<rrajdeeproychowdhury@gmail.com>
+ * Copyright (C) Rajdeep Roy Chowdhury 2019 <rrajdeeproychowdhury@gmail.com>
  *
  * You may redistribute it and/or modify it under the terms of the
  * GNU General Public License, as published by the Free Software
@@ -60,14 +60,19 @@ def sayWithoutCards(text):
     return buildResponse(speechlet)
 
 def onLaunch(event, context):
-    text= "Welcome to Maths formula, you can ask me to compute any mathematical function by saying something like, 'What is the sine of 45 degree?'"
+    text= "Welcome to Maths formula, you can ask me to compute any mathematical function by saying something like, 'What is the sine of 45 degree?' or say 'Learn maths formula' to learn new maths formulae"
     return sayAndListen("Maths Formula",text)
 
 def intentRouter(event, context):
     intent = event['request']['intent']['name']
     logic = Logic()
     # Custom Intents
-    if intent == 'SineIntent':
+    if intent == 'FormulaIntent':
+        text = 'Let\'s learn maths formula...\n'
+        for i in logic.formula.keys():
+            text = text + logic.formula[i] + '. '
+        return sayWithoutCards(text)
+    elif intent == 'SineIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
         text='Haha! The sine of '+str(value)+' is '+str(logic.sine(value))
@@ -150,9 +155,11 @@ def lambda_handler(event, context):
     elif event['request']['type'] == "IntentRequest":
         return intentRouter(event, context)
 
+# For local debugging purposes only
 if __name__=='__main__':
     print('The json object that is returned is...')
-    json_request=dict()
-    context=dict()
-    print(lambda_handler(json_request,context))
+    print(Logic().formula['sin2X'])
+    # json_request=dict()
+    # context=dict()
+    # print(lambda_handler(json_request,context))
     # This is only for debugging locally

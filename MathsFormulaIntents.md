@@ -215,6 +215,17 @@
                         "{n} C {r}",
                         "What is {n} C {r}"
                     ]
+                },
+                {
+                    "name": "FormulaIntent",
+                    "slots": [],
+                    "samples": [
+                        "Learn math formulas",
+                        "Learn maths formulae",
+                        "Learn maths formula",
+                        "Learn formula",
+                        "Learn math formula"
+                    ]
                 }
             ],
             "types": []
