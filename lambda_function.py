@@ -1,25 +1,22 @@
-import math
+'''
+ *
+ * Copyright (C) Rajdeep Roy Chowdhury 2019<rrajdeeproychowdhury@gmail.com>
+ *
+ * You may redistribute it and/or modify it under the terms of the
+ * GNU General Public License, as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option)
+ * any later version.
+ *
+ * MathsFormula is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+'''
+
+from logic import Logic
 
 ending_text='Thank you for using Maths Formula. You can always invoke this skill by saying "Alexa, open Maths Formula".'
-
-def sine(value):
-    '''Returns sine of an angle (in degrees)'''
-    return math.sin(value*(22/7)/180)
-def cosine(value):
-    '''Returns cosine of an angle (in degrees)'''
-    return math.cos(value*(22/7)/180)
-def tangent(value):
-    '''Returns tangent of an angle (in degrees)'''
-    return math.tan(value*(22/7)/180)
-def factorial(n):
-    '''Returns factorial of n'''
-    result = 1
-    for i in range(1,n+1):
-        result=result*i
-    return result
-def sumOfNaturalNumbers(n):
-    '''Return sum of n natural numbers'''
-    return n*(n+1)//2
 
 def buildPlainSpeech(body):
     speech = {}
@@ -68,41 +65,42 @@ def onLaunch(event, context):
 
 def intentRouter(event, context):
     intent = event['request']['intent']['name']
+    logic = Logic()
     # Custom Intents
     if intent == 'SineIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The sine of '+str(value)+' is '+str(sine(value))
+        text='Haha! The sine of '+str(value)+' is '+str(logic.sine(value))
         return say('Answer',text)
     elif intent == 'CosineIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The cosine of '+str(value)+' is '+str(cosine(value))
+        text='Haha! The cosine of '+str(value)+' is '+str(logic.cosine(value))
         return say('Answer',text)
     elif intent == 'TangentIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The tangent of '+str(value)+' is '+str(tangent(value))
+        text='Haha! The tangent of '+str(value)+' is '+str(logic.tangent(value))
         return say('Answer',text)
     elif intent == 'CosecIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The cosec of '+str(value)+' is '+str(1/sine(value))
+        text='Haha! The cosec of '+str(value)+' is '+str(1/logic.sine(value))
         return say('Answer',text)
     elif intent ==  'SecantIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The secant of '+str(value)+' is '+str(1/cosine(value))
+        text='Haha! The secant of '+str(value)+' is '+str(1/logic.cosine(value))
         return say('Answer',text)
     elif intent == 'CotIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=float(value)
-        text='Haha! The cot of '+str(value)+' is '+str(1/tangent(value))
+        text='Haha! The cot of '+str(value)+' is '+str(1/logic.tangent(value))
         return say('Answer',text)
     elif intent == 'FactorialIntent':
         value=event['request']['intent']['slots']['value']['value']
         value=int(value)
-        text='Haha! The factorial of '+str(value)+' is '+str(factorial(value))
+        text='Haha! The factorial of '+str(value)+' is '+str(logic.factorial(value))
         return say('Answer',text)
     elif intent == 'PowerIntent':
         ''' Here a is the base and b is the exponent'''
@@ -115,21 +113,21 @@ def intentRouter(event, context):
     elif intent == 'NaturalNumbersIntent':
         n=event['request']['intent']['slots']['n']['value']
         n=int(n)
-        text='Haha! The Sum of the first '+str(n)+' Natural Numbers is '+str(sumOfNaturalNumbers(n))
+        text='Haha! The Sum of the first '+str(n)+' Natural Numbers is '+str(logic.sumOfNaturalNumbers(n))
         return say('Answer',text)
     elif intent == 'nPrIntent':
         n=event['request']['intent']['slots']['n']['value']
         r=event['request']['intent']['slots']['r']['value']
         n=int(n)
         r=int(r)
-        text='Haha! The value of '+str(n)+' P '+str(r)+' is '+str(factorial(n)//(factorial(n-r)))
+        text='Haha! The value of '+str(n)+' P '+str(r)+' is '+str(logic.factorial(n)//(logic.factorial(n-r)))
         return say('Answer',text)
     elif intent == 'nCrIntent':
         n=event['request']['intent']['slots']['n']['value']
         r=event['request']['intent']['slots']['r']['value']
         n=int(n)
         r=int(r)
-        text='Haha! The value of '+str(n)+' C '+str(r)+' is '+str(factorial(n)//(factorial(n-r)*factorial(r)))
+        text='Haha! The value of '+str(n)+' C '+str(r)+' is '+str(logic.factorial(n)//(logic.factorial(n-r)*logic.factorial(r)))
         return say('Answer',text)
     elif intent == 'AboutIntent':
         text='I was created by Rajdeep Roy Chowdhury. '
