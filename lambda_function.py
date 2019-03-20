@@ -24,6 +24,14 @@ def buildPlainSpeech(body):
     speech['text'] = body
     return speech
 
+def buildSSMLSpeech(body):
+    speech = {}
+    speech['type'] = 'SSML'
+    speech['ssml'] = '<speak>'
+    speech['ssml'] = speech['ssml'] + body[:] 
+    speech['ssml'] = speech['ssml'] + '</speak>'
+    return speech
+
 def buildResponse(message, session_attributes={}):
     response = {}
     response['version'] = '1.0'
@@ -54,8 +62,10 @@ def sayAndListen(title, body):
     return buildResponse(speechlet)
 
 def sayWithoutCards(text):
+    text = text+'. '+ending_text
     speechlet = {}
-    speechlet['outputSpeech'] = buildPlainSpeech(text)
+    # speechlet['outputSpeech'] = buildPlainSpeech(text)
+    speechlet['outputSpeech'] = buildSSMLSpeech(text)
     speechlet['shouldEndSession'] = True
     return buildResponse(speechlet)
 
@@ -70,7 +80,9 @@ def intentRouter(event, context):
     if intent == 'FormulaIntent':
         text = 'Let\'s learn maths formula...\n'
         for i in logic.formula.keys():
-            text = text + logic.formula[i] + '. '
+            # text = text + logic.formula[i] + '<break time="1s">'
+            text = text + logic.formula[i]
+            text = text + '<break time="2s"/>'
         return sayWithoutCards(text)
     elif intent == 'SineIntent':
         value=event['request']['intent']['slots']['value']['value']
